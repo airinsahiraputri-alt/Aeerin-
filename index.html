@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Game Challenge</title>
+    <style>
+        /* CSS - Mengatur tampilan */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e3f2fd; /* Biru muda terang */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid #90caf9;
+            position: relative;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .sticker {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #1565c0; /* Biru tua */
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            height: 50px;
+        }
+
+        button {
+            padding: 10px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #btn-yes {
+            background-color: #1e88e5; /* Biru utama */
+            color: white;
+        }
+
+        #btn-yes:hover {
+            background-color: #1565c0;
+            transform: scale(1.1);
+        }
+
+        #btn-no {
+            background-color: #ef5350; /* Merah lembut agar kontras */
+            color: white;
+            position: absolute;
+        }
+
+        /* Pesan sukses */
+        #message {
+            display: none;
+            margin-top: 20px;
+            color: #2e7d32;
+            font-weight: bold;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="sticker">🎮✨</div>
+        
+        <h1 id="question">Apakah kamu siap menjadi pro player dan membuat game keren hari ini?</h1>
+
+        <div class="btn-group">
+            <button id="btn-yes" onclick="showSuccess()">Iya</button>
+            <button id="btn-no" onmouseover="moveButton()" onclick="moveButton()">Tidak</button>
+        </div>
+
+        <div id="message">
+            <p>Luar biasa! Semangat kreativitasmu adalah kunci sukses. Mari mulai petualanganmu! 🚀💙</p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript - Logika Interaktif
+        const btnNo = document.getElementById('btn-no');
+        const message = document.getElementById('message');
+        const question = document.getElementById('question');
+        const sticker = document.querySelector('.sticker');
+
+        function moveButton() {
+            // Mengambil ukuran layar untuk membatasi pergerakan tombol
+            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
+
+            // Memindahkan posisi tombol secara absolut
+            btnNo.style.left = x + 'px';
+            btnNo.style.top = y + 'px';
+        }
+
+        function showSuccess() {
+            // Menghilangkan tombol dan pertanyaan
+            document.querySelector('.btn-group').style.display = 'none';
+            question.innerText = "Keputusan yang Bagus!";
+            sticker.innerText = "🏆💻";
+            
+            // Menampilkan pesan positif
+            message.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
